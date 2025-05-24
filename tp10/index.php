@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+// Check if this is a database initialization request
+if (isset($_GET['init_db']) && $_GET['init_db'] === 'true') {
+    header('Location: init_db.php');
+    exit();
+}
+
 // Check if user is connected
 if (!isset($_SESSION['CONNECT']) || $_SESSION['CONNECT'] !== 'OK') {
     header('Location: auth/login.php');
@@ -31,5 +37,11 @@ $username = $_SESSION['login'] ?? 'User';
     <p style="margin-top: 30px;">
         <a href="auth/validation.php?afaire=deconnexion" class="logout-link">Déconnexion</a>
     </p>
+    
+    <?php if ($_SESSION['login'] === 'admin'): ?>
+    <p style="margin-top: 20px;">
+        <a href="?init_db=true" class="admin-link" onclick="return confirm('Attention: Cette action va réinitialiser la base de données. Continuer?');">Initialiser la base de données</a>
+    </p>
+    <?php endif; ?>
 </body>
 </html>

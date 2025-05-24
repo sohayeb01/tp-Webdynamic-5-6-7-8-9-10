@@ -53,6 +53,13 @@ try {
     $stmt = $pdo->query("SELECT * FROM exercice ORDER BY id DESC");
     $exercices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
+    // Check if the error is about undefined table
+    if (strpos($e->getMessage(), 'relation "exercice" does not exist') !== false) {
+        // Database not initialized, redirect to login with init_db option
+        header('Location: ../auth/login.php?error=4&init_db=true');
+        exit();
+    }
+    
     $message = '<div class="error">Erreur lors de la récupération: ' . $e->getMessage() . '</div>';
     $exercices = [];
 }

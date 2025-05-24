@@ -20,8 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
     
-    // Check credentials
-    if ($login !== USERLOGIN || $password !== USERPASS) {
+    // Check credentials against valid users
+    $authenticated = false;
+    $userRole = '';
+    
+    foreach ($VALID_USERS as $user) {
+        if ($login === $user['login'] && $password === $user['password']) {
+            $authenticated = true;
+            $userRole = $user['role'];
+            break;
+        }
+    }
+    
+    if (!$authenticated) {
         header('Location: login.php?error=2');
         exit();
     }
@@ -29,7 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Valid credentials - create session
     $_SESSION['CONNECT'] = 'OK';
     $_SESSION['login'] = $login;
-    $_SESSION['password'] = $password;
+    $_SESSION['role'] = $userRole;
+    
+    // Redirect to initialization page on first login if admin
+    if ($userRole === 'admin' && isset($_POST['init_db']) && $_POST['init_db'] === 'true') {
+        header('Location: ../init_db.php');
+        exit();
+    }
     
     header('Location: ../index.php');
     exit();
