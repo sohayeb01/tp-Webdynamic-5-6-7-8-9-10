@@ -1,0 +1,11 @@
+.nixpacks
+.git
+.gitignore
+.gitattributes
+.env
+*.log
+node_modules
+vendor
+Dockerfile
+.dockerignore
+railway.toml 
