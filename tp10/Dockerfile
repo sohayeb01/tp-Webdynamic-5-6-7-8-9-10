@@ -7,8 +7,11 @@ RUN apt-get update && apt-get install -y libpq-dev \
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+# Create directory structure
+RUN mkdir -p /var/www/html/tp10
+
 # Copy application files
-COPY . /var/www/html/
+COPY . /var/www/html/tp10/
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
