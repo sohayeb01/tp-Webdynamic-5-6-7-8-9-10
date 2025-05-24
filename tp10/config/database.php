@@ -1,11 +1,12 @@
 <?php
 // Database connection configuration
-$host = 'localhost';
-$port = 5432;
-$dbname = 'tp_10';
-$username = 'postgres';
-$password = 'gotrinx123';
-
+$url = "postgresql://postgres:wWKchzTkFqwiVokqOpFhtRRHEuAPGykL@trolley.proxy.rlwy.net:54475/railway";
+$dbparts = parse_url($url);
+$host = $dbparts['host'];
+$port = $dbparts['port'];
+$dbname = ltrim($dbparts['path'], '/');
+$username = $dbparts['user'];
+$password = $dbparts['pass'];
 function getDbConnection() {
     global $host, $port, $dbname, $username, $password;
     

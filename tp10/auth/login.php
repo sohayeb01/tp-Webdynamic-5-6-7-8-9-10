@@ -1,5 +1,10 @@
 <?php
+// Start output buffering to prevent header issues
+ob_start();
+
+// Start session
 session_start();
+
 require_once __DIR__ . '/../config/auth.php';
 
 $error_message = '';
