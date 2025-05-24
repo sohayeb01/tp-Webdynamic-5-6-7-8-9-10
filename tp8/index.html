@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    p {
+        text-align: center;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+
+    ul li {
+        background-color: #007bff;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    ul li a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    ul li:hover {
+        background-color: #0056b3;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>TP8</h1>
+        <p>Bienvenue sur le site de TP8</p>
+        <p>Choisissez une option dans le menu ci-dessous</p>
+        <ul>
+            <li><a href="Authentification/index.php">Authentification</a></li>
+            <li><a href="bookvisitor/index.php">bookvisitor</a></li>
+            <li><a href="calculatrice/index.php">calculatrice</a></li>
+            <li><a href="FormValidate/index.php">FormValidation</a></li>
+            <li><a href="GeneratePassword/index.php">GeneratePassword</a></li>
+            <li><a href="quiz/index.php">quiz</a></li>
+        </ul>
+    </div>
+</body>
+</html>

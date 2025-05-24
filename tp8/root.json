@@ -1,0 +1,9 @@
+{
+    "Authentification": "./Authentification/index.php",
+    "bookvisitor": "./bookvisitor/index.php",
+    "calculatrice": "./calculatrice/index.php",
+    "FormValidation": "./FormValidate/index.php",
+    "GeneratePassword": "./GeneratePassword/index.php",
+    "quiz": "./quiz/index.php"
+    
+}
