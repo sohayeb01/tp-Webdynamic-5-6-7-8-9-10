@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مولد كلمات المرور</title>
+    <title>Générateur de Mot de Passe</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -122,42 +122,42 @@
 </head>
 <body>
     <div class="container">
-        <h1>🔐 مولد كلمات المرور الآمنة</h1>
+        <h1>🔐 Générateur de Mot de Passe</h1>
         
         <form method="POST">
             <div class="form-group">
-                <label for="length">طول كلمة المرور (8-128 حرف):</label>
+                <label for="length">Longueur du mot de passe (8-128 caractères):</label>
                 <input type="number" name="length" id="length" min="8" max="128"
                        value="<?php echo isset($_POST['length']) ? $_POST['length'] : '12'; ?>" required>
             </div>
             
             <div class="options">
-                <label>خيارات الأحرف:</label>
+                <label>Options de caractères:</label>
                 <div class="checkbox-group">
                     <div class="checkbox-item">
-                        <label for="uppercase">أحرف كبيرة (A-Z)</label>
                         <input type="checkbox" name="uppercase" id="uppercase" 
                                <?php echo (isset($_POST['uppercase']) || !isset($_POST['generate'])) ? 'checked' : ''; ?>>
+                        <label for="uppercase">Majuscules (A-Z)</label>
                     </div>
                     <div class="checkbox-item">
-                        <label for="lowercase">أحرف صغيرة (a-z)</label>
                         <input type="checkbox" name="lowercase" id="lowercase"
                                <?php echo (isset($_POST['lowercase']) || !isset($_POST['generate'])) ? 'checked' : ''; ?>>
+                        <label for="lowercase">Minuscules (a-z)</label>
                     </div>
                     <div class="checkbox-item">
-                        <label for="numbers">أرقام (0-9)</label>
                         <input type="checkbox" name="numbers" id="numbers"
                                <?php echo (isset($_POST['numbers']) || !isset($_POST['generate'])) ? 'checked' : ''; ?>>
+                        <label for="numbers">Chiffres (0-9)</label>
                     </div>
                     <div class="checkbox-item">
-                        <label for="symbols">رموز (!@#$%)</label>
                         <input type="checkbox" name="symbols" id="symbols"
                                <?php echo isset($_POST['symbols']) ? 'checked' : ''; ?>>
+                        <label for="symbols">Symboles (!@#$%)</label>
                     </div>
                 </div>
             </div>
             
-            <button type="submit" name="generate">🎲 إنشاء كلمة مرور</button>
+            <button type="submit" name="generate">🎲 Générer un mot de passe</button>
         </form>
 
         <?php
@@ -214,8 +214,8 @@
             
             if ($length < 8 || $length > 128) {
                 echo "<div class='result error'>";
-                echo "<h3>❌ خطأ:</h3>";
-                echo "<p>يجب أن يكون طول كلمة المرور بين 8 و 128 حرف!</p>";
+                echo "<h3>❌ Erreur:</h3>";
+                echo "<p>La longueur du mot de passe doit être comprise entre 8 et 128 caractères!</p>";
                 echo "</div>";
             } else {
                 $options = [
@@ -227,8 +227,8 @@
                 
                 if (!$options['uppercase'] && !$options['lowercase'] && !$options['numbers'] && !$options['symbols']) {
                     echo "<div class='result error'>";
-                    echo "<h3>❌ خطأ:</h3>";
-                    echo "<p>يجب اختيار نوع واحد على الأقل من الأحرف!</p>";
+                    echo "<h3>❌ Erreur:</h3>";
+                    echo "<p>Vous devez sélectionner au moins un type de caractères!</p>";
                     echo "</div>";
                 } else {
                     $password = generatePassword($length, $options);
@@ -236,38 +236,40 @@
                     
                     if ($password) {
                         echo "<div class='result'>";
-                        echo "<h3>🎯 كلمة المرور المُنشأة:</h3>";
+                        echo "<h3>🎯 Mot de passe généré:</h3>";
                         echo "<div class='password-display'>$password</div>";
                         
                         $strengthColor = '';
                         $strengthText = '';
                         if ($strength < 40) {
                             $strengthColor = '#dc3545';
-                            $strengthText = 'ضعيفة';
+                            $strengthText = 'Faible';
                         } elseif ($strength < 70) {
                             $strengthColor = '#ffc107';
-                            $strengthText = 'متوسطة';
+                            $strengthText = 'Moyen';
                         } else {
                             $strengthColor = '#28a745';
-                            $strengthText = 'قوية';
+                            $strengthText = 'Fort';
                         }
                         
                         echo "<div class='strength'>";
-                        echo "<span>قوة كلمة المرور: <strong>$strengthText ($strength%)</strong></span>";
+                        echo "<span>Force: <strong>$strengthText</strong></span>";
                         echo "<div class='strength-bar'>";
-                        echo "<div class='strength-fill' style='width: {$strength}%; background-color: $strengthColor;'></div>";
+                        echo "<div class='strength-fill' style='width: $strength%; background-color: $strengthColor'></div>";
                         echo "</div>";
                         echo "</div>";
                         
-                        echo "<p><strong>الطول:</strong> $length حرف</p>";
-                        echo "<p><strong>أنواع الأحرف المستخدمة:</strong> ";
-                        $types = [];
-                        if ($options['uppercase']) $types[] = 'أحرف كبيرة';
-                        if ($options['lowercase']) $types[] = 'أحرف صغيرة';
-                        if ($options['numbers']) $types[] = 'أرقام';
-                        if ($options['symbols']) $types[] = 'رموز';
-                        echo implode(', ', $types);
+                        echo "<p><strong>Longueur:</strong> $length caractères</p>";
+                        echo "<p><strong>Contient:</strong> ";
+                        $contains = [];
+                        if ($options['uppercase']) $contains[] = "majuscules";
+                        if ($options['lowercase']) $contains[] = "minuscules";
+                        if ($options['numbers']) $contains[] = "chiffres";
+                        if ($options['symbols']) $contains[] = "symboles";
+                        echo implode(", ", $contains);
                         echo "</p>";
+                        
+                        echo "<p><small>Ce mot de passe a été généré localement dans votre navigateur et n'est pas stocké.</small></p>";
                         echo "</div>";
                     }
                 }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام تسجيل الدخول</title>
+    <title>Système d'Authentification</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -119,20 +119,20 @@
     $users = [
         'admin' => [
             'password' => 'admin123',
-            'name' => 'المدير العام',
-            'role' => 'مدير',
+            'name' => 'Administrateur',
+            'role' => 'Admin',
             'email' => 'admin@example.com'
         ],
         'user1' => [
             'password' => 'password123',
-            'name' => 'أحمد محمد',
-            'role' => 'مستخدم',
+            'name' => 'Ahmed Mohamed',
+            'role' => 'Utilisateur',
             'email' => 'ahmed@example.com'
         ],
         'guest' => [
             'password' => 'guest123',
-            'name' => 'زائر',
-            'role' => 'زائر',
+            'name' => 'Invité',
+            'role' => 'Invité',
             'email' => 'guest@example.com'
         ]
     ];
@@ -155,7 +155,7 @@
             $_SESSION['user_data'] = $users[$username];
             $_SESSION['login_time'] = date('Y-m-d H:i:s');
         } else {
-            $login_error = "اسم المستخدم أو كلمة المرور غير صحيحة!";
+            $login_error = "Nom d'utilisateur ou mot de passe incorrect !";
         }
     }
     ?>
@@ -164,45 +164,45 @@
         <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
             <!-- Welcome Page (User is logged in) -->
             <div class="welcome-box">
-                <h1>🎉 مرحباً بك!</h1>
+                <h1>🎉 Bienvenue !</h1>
                 <h2><?php echo $_SESSION['user_data']['name']; ?></h2>
-                <p>تم تسجيل دخولك بنجاح</p>
+                <p>Vous êtes connecté avec succès</p>
             </div>
             
             <div class="user-info">
-                <h3>📋 معلومات المستخدم:</h3>
+                <h3>📋 Informations utilisateur :</h3>
                 <div class="account-item">
-                    <span><strong>👤 اسم المستخدم:</strong></span>
+                    <span><strong>👤 Nom d'utilisateur :</strong></span>
                     <span><?php echo $_SESSION['username']; ?></span>
                 </div>
                 <div class="account-item">
-                    <span><strong>🏷️ الاسم الكامل:</strong></span>
+                    <span><strong>🏷️ Nom complet :</strong></span>
                     <span><?php echo $_SESSION['user_data']['name']; ?></span>
                 </div>
                 <div class="account-item">
-                    <span><strong>🎭 الدور:</strong></span>
+                    <span><strong>🎭 Rôle :</strong></span>
                     <span><?php echo $_SESSION['user_data']['role']; ?></span>
                 </div>
                 <div class="account-item">
-                    <span><strong>📧 البريد الإلكتروني:</strong></span>
+                    <span><strong>📧 Email :</strong></span>
                     <span><?php echo $_SESSION['user_data']['email']; ?></span>
                 </div>
                 <div class="account-item">
-                    <span><strong>🕐 وقت تسجيل الدخول:</strong></span>
+                    <span><strong>🕐 Heure de connexion :</strong></span>
                     <span><?php echo $_SESSION['login_time']; ?></span>
                 </div>
             </div>
             
             <a href="?logout=1">
-                <button class="logout-btn">🚪 تسجيل خروج</button>
+                <button class="logout-btn">🚪 Déconnexion</button>
             </a>
             
         <?php else: ?>
             <!-- Login Page -->
-            <h1>🔐 تسجيل الدخول</h1>
+            <h1>🔐 Connexion</h1>
             
             <div class="demo-accounts">
-                <h4>🧪 حسابات تجريبية للاختبار:</h4>
+                <h4>🧪 Comptes de démonstration :</h4>
                 <div class="account-item">
                     <span><strong>admin</strong></span>
                     <span>admin123</span>
@@ -219,24 +219,24 @@
             
             <form method="POST">
                 <div class="form-group">
-                    <label for="username">اسم المستخدم:</label>
+                    <label for="username">Nom d'utilisateur :</label>
                     <input type="text" name="username" id="username" 
                            value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"
-                           placeholder="أدخل اسم المستخدم" required>
+                           placeholder="Entrez votre nom d'utilisateur" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">كلمة المرور:</label>
+                    <label for="password">Mot de passe :</label>
                     <input type="password" name="password" id="password" 
-                           placeholder="أدخل كلمة المرور" required>
+                           placeholder="Entrez votre mot de passe" required>
                 </div>
                 
-                <button type="submit" name="login">🔑 دخول</button>
+                <button type="submit" name="login">🔑 Connexion</button>
             </form>
             
             <?php if (isset($login_error)): ?>
                 <div class="result error">
-                    <h3>❌ خطأ في تسجيل الدخول:</h3>
+                    <h3>❌ Erreur de connexion :</h3>
                     <p><?php echo $login_error; ?></p>
                 </div>
             <?php endif; ?>

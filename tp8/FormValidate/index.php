@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نموذج التواصل</title>
+    <title>Formulaire de Contact</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -113,48 +113,48 @@
 </head>
 <body>
     <div class="container">
-        <h1>📧 نموذج التواصل معنا</h1>
+        <h1>📧 Formulaire de Contact</h1>
         
         <div class="info-box">
-            <strong>📝 تعليمات:</strong> يرجى ملء جميع الحقول المطلوبة المميزة بعلامة <span class="required">*</span>
+            <strong>📝 Instructions:</strong> Veuillez remplir tous les champs obligatoires marqués par un <span class="required">*</span>
         </div>
         
         <form method="POST">
             <div class="form-group">
-                <label for="name">الاسم الكامل <span class="required">*</span>:</label>
+                <label for="name">Nom complet <span class="required">*</span>:</label>
                 <input type="text" name="name" id="name" 
                        value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>"
-                       placeholder="أدخل اسمك الكامل">
+                       placeholder="Entrez votre nom complet">
             </div>
             
             <div class="form-group">
-                <label for="email">البريد الإلكتروني <span class="required">*</span>:</label>
+                <label for="email">Email <span class="required">*</span>:</label>
                 <input type="email" name="email" id="email" 
                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
                        placeholder="example@domain.com">
             </div>
             
             <div class="form-group">
-                <label for="phone">رقم الهاتف:</label>
+                <label for="phone">Téléphone:</label>
                 <input type="tel" name="phone" id="phone" 
                        value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>"
-                       placeholder="اختياري - رقم الهاتف">
+                       placeholder="Optionnel - Numéro de téléphone">
             </div>
             
             <div class="form-group">
-                <label for="subject">موضوع الرسالة:</label>
+                <label for="subject">Sujet du message:</label>
                 <input type="text" name="subject" id="subject" 
                        value="<?php echo isset($_POST['subject']) ? htmlspecialchars($_POST['subject']) : ''; ?>"
-                       placeholder="اختياري - موضوع الرسالة">
+                       placeholder="Optionnel - Sujet du message">
             </div>
             
             <div class="form-group">
-                <label for="message">الرسالة <span class="required">*</span>:</label>
+                <label for="message">Message <span class="required">*</span>:</label>
                 <textarea name="message" id="message" 
-                          placeholder="اكتب رسالتك هنا..."><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
+                          placeholder="Écrivez votre message ici..."><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
             </div>
             
-            <button type="submit" name="submit">📤 إرسال الرسالة</button>
+            <button type="submit" name="submit">📤 Envoyer le message</button>
         </form>
 
         <?php
@@ -175,32 +175,32 @@
             
             // Validate required fields
             if (empty($_POST['name'])) {
-                $errors[] = "الاسم مطلوب";
+                $errors[] = "Le nom est requis";
             } else {
                 $data['name'] = sanitizeInput($_POST['name']);
             }
             
             if (empty($_POST['email'])) {
-                $errors[] = "البريد الإلكتروني مطلوب";
+                $errors[] = "L'email est requis";
             } elseif (!validateEmail($_POST['email'])) {
-                $errors[] = "البريد الإلكتروني غير صحيح";
+                $errors[] = "Format d'email invalide";
             } else {
                 $data['email'] = sanitizeInput($_POST['email']);
             }
             
             if (empty($_POST['message'])) {
-                $errors[] = "الرسالة مطلوبة";
+                $errors[] = "Le message est requis";
             } else {
                 $data['message'] = sanitizeInput($_POST['message']);
             }
             
             // Optional fields
             $data['phone'] = !empty($_POST['phone']) ? sanitizeInput($_POST['phone']) : '';
-            $data['subject'] = !empty($_POST['subject']) ? sanitizeInput($_POST['subject']) : 'بدون موضوع';
+            $data['subject'] = !empty($_POST['subject']) ? sanitizeInput($_POST['subject']) : 'Sans sujet';
             
             if (!empty($errors)) {
                 echo "<div class='result error'>";
-                echo "<h3>❌ يرجى تصحيح الأخطاء التالية:</h3>";
+                echo "<h3>❌ Veuillez corriger les erreurs suivantes:</h3>";
                 echo "<ul>";
                 foreach ($errors as $error) {
                     echo "<li>$error</li>";
@@ -210,43 +210,43 @@
             } else {
                 // Success - Display submitted data
                 echo "<div class='result'>";
-                echo "<h3>✅ تم إرسال رسالتك بنجاح!</h3>";
-                echo "<p>شكراً لك على التواصل معنا. سنقوم بالرد عليك في أقرب وقت ممكن.</p>";
+                echo "<h3>✅ Votre message a été envoyé avec succès!</h3>";
+                echo "<p>Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.</p>";
                 
                 echo "<div class='message-display'>";
-                echo "<h4>📋 تفاصيل الرسالة المُرسلة:</h4>";
+                echo "<h4>📋 Détails du message envoyé:</h4>";
                 
                 echo "<div class='field-info'>";
-                echo "<span class='field-label'>👤 الاسم:</span>";
+                echo "<span class='field-label'>👤 Nom:</span>";
                 echo "<span class='field-value'>" . $data['name'] . "</span>";
                 echo "</div>";
                 
                 echo "<div class='field-info'>";
-                echo "<span class='field-label'>📧 البريد الإلكتروني:</span>";
+                echo "<span class='field-label'>📧 Email:</span>";
                 echo "<span class='field-value'>" . $data['email'] . "</span>";
                 echo "</div>";
                 
                 if (!empty($data['phone'])) {
                     echo "<div class='field-info'>";
-                    echo "<span class='field-label'>📱 رقم الهاتف:</span>";
+                    echo "<span class='field-label'>📱 Téléphone:</span>";
                     echo "<span class='field-value'>" . $data['phone'] . "</span>";
                     echo "</div>";
                 }
                 
                 echo "<div class='field-info'>";
-                echo "<span class='field-label'>📝 الموضوع:</span>";
+                echo "<span class='field-label'>📝 Sujet:</span>";
                 echo "<span class='field-value'>" . $data['subject'] . "</span>";
                 echo "</div>";
                 
                 echo "<div class='field-info' style='border-bottom: none;'>";
-                echo "<span class='field-label'>💬 الرسالة:</span>";
+                echo "<span class='field-label'>💬 Message:</span>";
                 echo "</div>";
                 echo "<div style='margin-top: 10px; padding: 10px; background: white; border-radius: 5px; line-height: 1.6;'>";
                 echo nl2br($data['message']);
                 echo "</div>";
                 
                 echo "<div style='margin-top: 15px; font-size: 14px; color: #6c757d;'>";
-                echo "📅 تاريخ الإرسال: " . date('Y-m-d H:i:s');
+                echo "📅 Date d'envoi: " . date('Y-m-d H:i:s');
                 echo "</div>";
                 
                 echo "</div>";

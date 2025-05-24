@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Calculator</title>
+    <title>Calculatrice PHP</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -75,33 +75,33 @@
 </head>
 <body>
     <div class="container">
-        <h1>🧮 PHP Calculator</h1>
+        <h1>🧮 Calculatrice PHP</h1>
         
         <form method="POST">
             <div class="form-group">
-                <label for="num1">First Number:</label>
+                <label for="num1">Premier nombre:</label>
                 <input type="number" step="any" name="num1" id="num1" 
                        value="<?php echo isset($_POST['num1']) ? $_POST['num1'] : ''; ?>" required>
             </div>
             
             <div class="form-group">
-                <label for="operation">Operation:</label>
+                <label for="operation">Opération:</label>
                 <select name="operation" id="operation" required>
-                    <option value="">Select Operation</option>
+                    <option value="">Sélectionnez une opération</option>
                     <option value="+" <?php echo (isset($_POST['operation']) && $_POST['operation'] == '+') ? 'selected' : ''; ?>>➕ Addition</option>
-                    <option value="-" <?php echo (isset($_POST['operation']) && $_POST['operation'] == '-') ? 'selected' : ''; ?>>➖ Subtraction</option>
+                    <option value="-" <?php echo (isset($_POST['operation']) && $_POST['operation'] == '-') ? 'selected' : ''; ?>>➖ Soustraction</option>
                     <option value="*" <?php echo (isset($_POST['operation']) && $_POST['operation'] == '*') ? 'selected' : ''; ?>>✖️ Multiplication</option>
                     <option value="/" <?php echo (isset($_POST['operation']) && $_POST['operation'] == '/') ? 'selected' : ''; ?>>➗ Division</option>
                 </select>
             </div>
             
             <div class="form-group">
-                <label for="num2">Second Number:</label>
+                <label for="num2">Deuxième nombre:</label>
                 <input type="number" step="any" name="num2" id="num2" 
                        value="<?php echo isset($_POST['num2']) ? $_POST['num2'] : ''; ?>" required>
             </div>
             
-            <button type="submit">Calculate</button>
+            <button type="submit">Calculer</button>
         </form>
 
         <?php
@@ -121,7 +121,7 @@
                         break;
                     case '-':
                         $result = $num1 - $num2;
-                        $op_name = "Subtraction";
+                        $op_name = "Soustraction";
                         break;
                     case '*':
                         $result = $num1 * $num2;
@@ -133,31 +133,31 @@
                             $op_name = "Division";
                         } else {
                             $error = true;
-                            $error_msg = "Error: Division by zero is not allowed!";
+                            $error_msg = "Erreur: Division par zéro impossible!";
                         }
                         break;
                     default:
                         $error = true;
-                        $error_msg = "Invalid operation!";
+                        $error_msg = "Opération invalide!";
                 }
                 
                 if (!$error) {
                     echo "<div class='result'>";
-                    echo "<h3>🎯 Result:</h3>";
-                    echo "<p><strong>Operation:</strong> $num1 $operation $num2</p>";
-                    echo "<p><strong>Operation Type:</strong> $op_name</p>";
-                    echo "<p><strong>Result:</strong> " . number_format($result, 2) . "</p>";
+                    echo "<h3>🎯 Résultat:</h3>";
+                    echo "<p><strong>Opération:</strong> $num1 $operation $num2</p>";
+                    echo "<p><strong>Type d'opération:</strong> $op_name</p>";
+                    echo "<p><strong>Résultat:</strong> " . number_format($result, 2) . "</p>";
                     echo "</div>";
                 } else {
                     echo "<div class='result error'>";
-                    echo "<h3>❌ Error:</h3>";
+                    echo "<h3>❌ Erreur:</h3>";
                     echo "<p>$error_msg</p>";
                     echo "</div>";
                 }
             } else {
                 echo "<div class='result error'>";
-                echo "<h3>❌ Error:</h3>";
-                echo "<p>Please fill in all fields with valid values!</p>";
+                echo "<h3>❌ Erreur:</h3>";
+                echo "<p>Veuillez remplir tous les champs avec des valeurs valides!</p>";
                 echo "</div>";
             }
         }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كتاب الزوار</title>
+    <title>Livre d'Or</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -182,18 +182,18 @@
             $_SESSION['guestbook_messages'] = [
                 [
                     'date' => '2024-01-20 10:30:00',
-                    'name' => 'أحمد محمد',
-                    'message' => 'موقع رائع! شكراً لكم على المحتوى المفيد.'
+                    'name' => 'Ahmed Mohamed',
+                    'message' => 'Super site! Merci pour le contenu utile.'
                 ],
                 [
                     'date' => '2024-01-19 15:45:00',
-                    'name' => 'فاطمة العلي',
-                    'message' => 'أعجبني التصميم كثيراً، واصلوا الإبداع!'
+                    'name' => 'Sophie Martin',
+                    'message' => 'J\'adore le design, continuez comme ça!'
                 ],
                 [
                     'date' => '2024-01-18 09:15:00',
-                    'name' => 'محمد الأحمد',
-                    'message' => 'تجربة مستخدم ممتازة، أنصح الجميع بزيارة الموقع.'
+                    'name' => 'Thomas Dubois',
+                    'message' => 'Excellente expérience utilisateur, je recommande ce site à tous.'
                 ]
             ];
         }
@@ -215,15 +215,15 @@
         
         // Validation
         if (empty($name)) {
-            $errors[] = 'الاسم مطلوب';
+            $errors[] = 'Le nom est requis';
         } elseif (strlen($name) < 2) {
-            $errors[] = 'الاسم يجب أن يكون حرفين على الأقل';
+            $errors[] = 'Le nom doit contenir au moins 2 caractères';
         }
         
         if (empty($message)) {
-            $errors[] = 'الرسالة مطلوبة';
+            $errors[] = 'Le message est requis';
         } elseif (strlen($message) < 5) {
-            $errors[] = 'الرسالة يجب أن تكون 5 أحرف على الأقل';
+            $errors[] = 'Le message doit contenir au moins 5 caractères';
         }
         
         if (empty($errors)) {
@@ -232,11 +232,11 @@
             $message = htmlspecialchars($message);
             
             if (saveMessage($name, $message)) {
-                $success_message = 'تم إضافة رسالتك بنجاح! شكراً لك.';
+                $success_message = 'Votre message a été ajouté avec succès! Merci.';
                 // Clear form
                 $_POST = [];
             } else {
-                $error_message = 'حدث خطأ أثناء حفظ الرسالة. يرجى المحاولة مرة أخرى.';
+                $error_message = 'Une erreur s\'est produite lors de l\'enregistrement du message. Veuillez réessayer.';
             }
         }
     }
@@ -245,32 +245,30 @@
     ?>
 
     <div class="container">
-        <h1>📖 كتاب الزوار</h1>
+        <h1>📖 Livre d'Or</h1>
         
         <div class="stats">
-            <strong>📊 إحصائيات:</strong> 
-            يحتوي كتاب الزوار على <?php echo count($messages); ?> رسالة من الزوار الكرام
+            <p><strong>Nombre total de messages: </strong><?php echo count($messages); ?></p>
         </div>
         
-        <!-- Add Message Form -->
+        <!-- Message Form -->
         <div class="form-section">
-            <h2>✍️ اترك رسالة</h2>
+            <h2>Laissez votre message</h2>
             
             <?php if (isset($success_message)): ?>
                 <div class="result success">
-                    ✅ <?php echo $success_message; ?>
+                    <p><?php echo $success_message; ?></p>
                 </div>
             <?php endif; ?>
             
             <?php if (isset($error_message)): ?>
                 <div class="result error">
-                    ❌ <?php echo $error_message; ?>
+                    <p><?php echo $error_message; ?></p>
                 </div>
             <?php endif; ?>
             
             <?php if (!empty($errors)): ?>
                 <div class="result error">
-                    <strong>يرجى تصحيح الأخطاء التالية:</strong>
                     <ul>
                         <?php foreach ($errors as $error): ?>
                             <li><?php echo $error; ?></li>
@@ -281,36 +279,36 @@
             
             <form method="POST">
                 <div class="form-group">
-                    <label for="name">الاسم <span class="required">*</span>:</label>
+                    <label for="name">Votre nom <span class="required">*</span></label>
                     <input type="text" name="name" id="name" 
                            value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>"
-                           placeholder="أدخل اسمك" required>
+                           placeholder="Entrez votre nom" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">الرسالة <span class="required">*</span>:</label>
+                    <label for="message">Votre message <span class="required">*</span></label>
                     <textarea name="message" id="message" 
-                              placeholder="اكتب رسالتك هنا..." required><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
+                              placeholder="Écrivez votre message ici" required><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
                 </div>
                 
-                <button type="submit" name="submit">📝 إضافة الرسالة</button>
+                <button type="submit" name="submit">Envoyer le message</button>
             </form>
         </div>
         
-        <!-- Messages Display -->
+        <!-- Messages List -->
         <div class="messages-section">
-            <h2>💬 رسائل الزوار</h2>
+            <h2>Messages des visiteurs</h2>
             
             <?php if (empty($messages)): ?>
                 <div class="no-messages">
-                    📭 لا توجد رسائل بعد. كن أول من يترك رسالة!
+                    <p>Aucun message pour le moment. Soyez le premier à laisser un message!</p>
                 </div>
             <?php else: ?>
                 <?php foreach ($messages as $msg): ?>
                     <div class="message-item">
                         <div class="message-header">
-                            <span class="message-author">👤 <?php echo $msg['name']; ?></span>
-                            <span class="message-date">🕐 <?php echo date('Y/m/d - H:i', strtotime($msg['date'])); ?></span>
+                            <span class="message-author"><?php echo $msg['name']; ?></span>
+                            <span class="message-date"><?php echo date('d/m/Y H:i', strtotime($msg['date'])); ?></span>
                         </div>
                         <div class="message-content">
                             <?php echo nl2br($msg['message']); ?>

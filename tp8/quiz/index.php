@@ -3,11 +3,11 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اختبار قصير - PHP</title>
+    <title>Quiz PHP</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,7 +54,7 @@ session_start();
             padding: 5px 12px;
             border-radius: 50%;
             font-weight: bold;
-            margin-left: 10px;
+            margin-right: 10px;
         }
         .options {
             margin-top: 15px;
@@ -69,7 +69,7 @@ session_start();
             background-color: #e9ecef;
         }
         .option input {
-            margin-left: 10px;
+            margin-right: 10px;
         }
         .option label {
             cursor: pointer;
@@ -184,7 +184,7 @@ session_start();
     // Quiz questions and answers
     $quiz = [
         [
-            'question' => 'ما هو الامتداد الصحيح لملفات PHP؟',
+            'question' => 'Quelle est l\'extension correcte des fichiers PHP?',
             'options' => [
                 'A' => '.html',
                 'B' => '.php',
@@ -192,10 +192,10 @@ session_start();
                 'D' => '.css'
             ],
             'correct' => 'B',
-            'explanation' => 'الامتداد الصحيح لملفات PHP هو .php حيث يتم تنفيذ الكود على الخادم'
+            'explanation' => 'L\'extension correcte des fichiers PHP est .php, où le code est exécuté sur le serveur'
         ],
         [
-            'question' => 'أي من هذه الرموز يُستخدم لبدء كود PHP؟',
+            'question' => 'Quel symbole est utilisé pour commencer un code PHP?',
             'options' => [
                 'A' => '&lt;script&gt;',
                 'B' => '&lt;%',
@@ -203,10 +203,10 @@ session_start();
                 'D' => '&lt;#'
             ],
             'correct' => 'C',
-            'explanation' => 'يبدأ كود PHP بالرمز <?php وينتهي بـ ?>'
+            'explanation' => 'Le code PHP commence par le symbole <?php et se termine par ?>'
         ],
         [
-            'question' => 'أي من هذه المتغيرات صحيح في PHP؟',
+            'question' => 'Quelle variable est correcte en PHP?',
             'options' => [
                 'A' => 'var name',
                 'B' => '$name',
@@ -214,21 +214,21 @@ session_start();
                 'D' => '#name'
             ],
             'correct' => 'B',
-            'explanation' => 'في PHP، تبدأ المتغيرات بعلامة الدولار $ متبوعة بالاسم'
+            'explanation' => 'En PHP, les variables commencent par le signe dollar $ suivi du nom'
         ],
         [
-            'question' => 'ما هي الطريقة الصحيحة لطباعة النص في PHP؟',
+            'question' => 'Quelle est la méthode correcte pour afficher du texte en PHP?',
             'options' => [
                 'A' => 'console.log("Hello")',
                 'B' => 'print("Hello")',
                 'C' => 'echo "Hello"',
-                'D' => 'كلاهما B و C صحيح'
+                'D' => 'Les deux B et C sont corrects'
             ],
             'correct' => 'D',
-            'explanation' => 'يمكن استخدام كل من echo و print لطباعة النص في PHP'
+            'explanation' => 'Vous pouvez utiliser à la fois echo et print pour afficher du texte en PHP'
         ],
         [
-            'question' => 'أي من هذه الدوال تُستخدم للحصول على طول النص في PHP؟',
+            'question' => 'Quelle fonction est utilisée pour obtenir la longueur d\'une chaîne en PHP?',
             'options' => [
                 'A' => 'length()',
                 'B' => 'size()',
@@ -236,237 +236,249 @@ session_start();
                 'D' => 'count()'
             ],
             'correct' => 'C',
-            'explanation' => 'الدالة strlen() تُستخدم للحصول على طول النص في PHP'
+            'explanation' => 'La fonction strlen() est utilisée pour obtenir la longueur d\'une chaîne en PHP'
         ],
         [
-            'question' => 'كيف يتم إنشاء مصفوفة في PHP؟',
+            'question' => 'Comment créer un tableau en PHP?',
             'options' => [
                 'A' => '$arr = []',
                 'B' => '$arr = array()',
                 'C' => '$arr = new Array()',
-                'D' => 'كلاهما A و B صحيح'
+                'D' => 'Les deux A et B sont corrects'
             ],
             'correct' => 'D',
-            'explanation' => 'يمكن إنشاء المصفوفات في PHP باستخدام [] أو array()'
+            'explanation' => 'Vous pouvez créer des tableaux en PHP en utilisant [] ou array()'
         ],
         [
-            'question' => 'ما هو الرمز المستخدم لربط النصوص في PHP؟',
+            'question' => 'Quelle fonction est utilisée pour vérifier si une variable est définie?',
             'options' => [
-                'A' => '+',
-                'B' => '&',
-                'C' => '.',
-                'D' => 'concat()'
+                'A' => 'isDefined()',
+                'B' => 'isset()',
+                'C' => 'ifexist()',
+                'D' => 'checkvar()'
             ],
-            'correct' => 'C',
-            'explanation' => 'يُستخدم الرمز . (النقطة) لربط النصوص في PHP'
+            'correct' => 'B',
+            'explanation' => 'La fonction isset() est utilisée pour vérifier si une variable est définie et n\'est pas NULL'
         ],
         [
-            'question' => 'أي من هذه التعليقات صحيح في PHP؟',
+            'question' => 'Comment commencer une session en PHP?',
             'options' => [
-                'A' => '// تعليق',
-                'B' => '# تعليق',
-                'C' => '/* تعليق */',
-                'D' => 'جميع ما سبق'
+                'A' => 'session_start()',
+                'B' => 'session_begin()',
+                'C' => '$_SESSION->start()',
+                'D' => 'begin_session()'
+            ],
+            'correct' => 'A',
+            'explanation' => 'La fonction session_start() est utilisée pour démarrer une nouvelle session ou reprendre une session existante'
+        ],
+        [
+            'question' => 'Quelle est la méthode correcte pour inclure un fichier en PHP?',
+            'options' => [
+                'A' => 'include()',
+                'B' => 'require()',
+                'C' => 'import()',
+                'D' => 'Les deux A et B sont corrects'
             ],
             'correct' => 'D',
-            'explanation' => 'PHP يدعم ثلاثة أنواع من التعليقات: // و # و /* */'
+            'explanation' => 'Vous pouvez utiliser include() ou require() pour inclure des fichiers en PHP'
+        ],
+        [
+            'question' => 'Comment accéder aux données d\'un formulaire POST en PHP?',
+            'options' => [
+                'A' => '$_GET["name"]',
+                'B' => '$_POST["name"]',
+                'C' => '$form->get("name")',
+                'D' => 'Request.Form("name")'
+            ],
+            'correct' => 'B',
+            'explanation' => '$_POST["name"] est utilisé pour accéder aux données envoyées via la méthode POST'
         ]
     ];
     
-    $totalQuestions = count($quiz);
-    $submitted = isset($_POST['submit']);
-    
-    // Handle form reset
+    // Reset quiz
     if (isset($_POST['reset'])) {
-        unset($_SESSION['quiz_completed']);
+        unset($_SESSION['quiz_answers']);
+        unset($_SESSION['quiz_submitted']);
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
     
-    if ($submitted) {
-        $userAnswers = $_POST;
-        $score = 0;
-        $results = [];
+    // Process form submission
+    if (isset($_POST['submit'])) {
+        $_SESSION['quiz_submitted'] = true;
         
+        // Store user answers
+        $_SESSION['quiz_answers'] = [];
         foreach ($quiz as $index => $question) {
-            $questionNum = $index + 1;
-            $userAnswer = isset($userAnswers["q$questionNum"]) ? $userAnswers["q$questionNum"] : '';
-            $isCorrect = ($userAnswer === $question['correct']);
-            
-            if ($isCorrect) {
+            $questionId = 'q' . $index;
+            $_SESSION['quiz_answers'][$index] = isset($_POST[$questionId]) ? $_POST[$questionId] : '';
+        }
+    }
+    
+    // Calculate score if quiz is submitted
+    $score = 0;
+    $totalQuestions = count($quiz);
+    
+    if (isset($_SESSION['quiz_submitted']) && $_SESSION['quiz_submitted']) {
+        foreach ($quiz as $index => $question) {
+            if (isset($_SESSION['quiz_answers'][$index]) && $_SESSION['quiz_answers'][$index] === $question['correct']) {
                 $score++;
             }
-            
-            $results[] = [
-                'question' => $question['question'],
-                'user_answer' => $userAnswer,
-                'correct_answer' => $question['correct'],
-                'is_correct' => $isCorrect,
-                'explanation' => $question['explanation'],
-                'options' => $question['options']
-            ];
         }
-        
-        $percentage = ($score / $totalQuestions) * 100;
-        $_SESSION['quiz_completed'] = true;
     }
     ?>
 
     <div class="container">
-        <h1>🧠 اختبار قصير في PHP</h1>
-        
-        <?php if (!$submitted): ?>
-            <!-- Quiz Form -->
+        <?php if (isset($_SESSION['quiz_submitted']) && $_SESSION['quiz_submitted']): ?>
+            <!-- Results Page -->
+            <h1>📝 Résultats du Quiz PHP</h1>
+            
+            <?php 
+            $percentage = ($score / $totalQuestions) * 100;
+            $resultClass = '';
+            $resultMessage = '';
+            
+            if ($percentage >= 80) {
+                $resultClass = 'score-excellent';
+                $resultMessage = 'Excellent! Vous maîtrisez bien PHP!';
+            } elseif ($percentage >= 60) {
+                $resultClass = 'score-good';
+                $resultMessage = 'Bon travail! Vous avez une bonne compréhension de PHP.';
+            } else {
+                $resultClass = 'score-poor';
+                $resultMessage = 'Continuez à apprendre! Revoyez les bases de PHP.';
+            }
+            ?>
+            
             <div class="quiz-info">
-                <h3>📋 معلومات الاختبار</h3>
-                <p><strong>عدد الأسئلة:</strong> <?php echo $totalQuestions; ?> أسئلة</p>
-                <p><strong>نوع الأسئلة:</strong> اختيار من متعدد</p>
-                <p><strong>الوقت المقدر:</strong> 10 دقائق</p>
-                <p><strong>التعليمات:</strong> اختر الإجابة الصحيحة لكل سؤال</p>
+                <p>Vous avez terminé le quiz! Voici vos résultats:</p>
             </div>
             
-            <form method="POST" id="quizForm">
+            <div class="results <?php echo $resultClass; ?>">
+                <div class="score-display">
+                    <?php echo $score; ?> / <?php echo $totalQuestions; ?>
+                    (<?php echo round($percentage); ?>%)
+                </div>
+                <p style="text-align: center; font-size: 18px;">
+                    <strong><?php echo $resultMessage; ?></strong>
+                </p>
+            </div>
+            
+            <h2>Détails des réponses:</h2>
+            
+            <?php foreach ($quiz as $index => $question): ?>
+                <?php 
+                $userAnswer = isset($_SESSION['quiz_answers'][$index]) ? $_SESSION['quiz_answers'][$index] : '';
+                $isCorrect = ($userAnswer === $question['correct']);
+                $questionClass = $isCorrect ? 'correct' : 'incorrect';
+                $indicatorClass = $isCorrect ? 'correct-indicator' : 'incorrect-indicator';
+                $indicatorText = $isCorrect ? 'Correct' : 'Incorrect';
+                ?>
+                
+                <div class="question-result <?php echo $questionClass; ?>">
+                    <span class="answer-indicator <?php echo $indicatorClass; ?>"><?php echo $indicatorText; ?></span>
+                    <div class="question-title">
+                        <span class="question-number"><?php echo ($index + 1); ?></span>
+                        <?php echo $question['question']; ?>
+                    </div>
+                    
+                    <div style="margin: 10px 0;">
+                        <strong>Votre réponse:</strong> 
+                        <?php 
+                        if (!empty($userAnswer)) {
+                            echo $userAnswer . '. ' . $question['options'][$userAnswer];
+                        } else {
+                            echo '<span style="color: #dc3545;">Aucune réponse</span>';
+                        }
+                        ?>
+                    </div>
+                    
+                    <?php if (!$isCorrect): ?>
+                        <div style="margin: 10px 0;">
+                            <strong>Réponse correcte:</strong> 
+                            <?php echo $question['correct'] . '. ' . $question['options'][$question['correct']]; ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <div class="explanation">
+                        <strong>Explication:</strong> <?php echo $question['explanation']; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            
+            <form method="POST">
+                <button type="submit" name="reset" class="reset-btn">🔄 Recommencer le Quiz</button>
+            </form>
+            
+        <?php else: ?>
+            <!-- Quiz Form -->
+            <h1>📝 Quiz PHP</h1>
+            
+            <div class="quiz-info">
+                <p>Testez vos connaissances en PHP avec ce quiz de <?php echo $totalQuestions; ?> questions!</p>
+                <p><strong>Instructions:</strong> Sélectionnez la bonne réponse pour chaque question.</p>
+            </div>
+            
+            <form method="POST">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%;">0%</div>
+                </div>
+                
                 <?php foreach ($quiz as $index => $question): ?>
-                    <div class="question">
+                    <div class="question" id="question-<?php echo $index; ?>" data-question="<?php echo $index; ?>">
                         <div class="question-title">
-                            <span class="question-number"><?php echo $index + 1; ?></span>
+                            <span class="question-number"><?php echo ($index + 1); ?></span>
                             <?php echo $question['question']; ?>
                         </div>
                         
                         <div class="options">
                             <?php foreach ($question['options'] as $key => $option): ?>
                                 <div class="option">
-                                    <label>
-                                        <input type="radio" name="q<?php echo $index + 1; ?>" value="<?php echo $key; ?>" required>
-                                        <strong><?php echo $key; ?>)</strong> <?php echo $option; ?>
-                                    </label>
+                                    <input type="radio" name="q<?php echo $index; ?>" id="q<?php echo $index; ?>-<?php echo $key; ?>" value="<?php echo $key; ?>">
+                                    <label for="q<?php echo $index; ?>-<?php echo $key; ?>"><?php echo $key; ?>. <?php echo $option; ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
                 
-                <button type="submit" name="submit">📝 إرسال الإجابات</button>
+                <button type="submit" name="submit">Soumettre les réponses</button>
             </form>
             
-        <?php else: ?>
-            <!-- Results Display -->
-            <div class="score-display">
-                🎯 النتيجة: <?php echo $score; ?> من <?php echo $totalQuestions; ?> 
-                (<?php echo round($percentage, 1); ?>%)
-            </div>
-            
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: <?php echo $percentage; ?>%">
-                    <?php echo round($percentage, 1); ?>%
-                </div>
-            </div>
-            
-            <div class="results <?php 
-                if ($percentage >= 80) echo 'score-excellent';
-                elseif ($percentage >= 60) echo 'score-good';
-                else echo 'score-poor';
-            ?>">
-                <h3>
-                    <?php 
-                    if ($percentage >= 80) echo '🎉 ممتاز! أداء رائع';
-                    elseif ($percentage >= 60) echo '👍 جيد! يمكنك التحسن أكثر';
-                    else echo '📚 يحتاج لمراجعة أكثر';
-                    ?>
-                </h3>
-                <p>
-                    <?php 
-                    if ($percentage >= 80) echo 'لديك فهم ممتاز لأساسيات PHP. استمر في التعلم!';
-                    elseif ($percentage >= 60) echo 'لديك فهم جيد للأساسيات، راجع المواضيع التي أخطأت فيها.';
-                    else echo 'يُنصح بمراجعة أساسيات PHP مرة أخرى قبل المتابعة.';
-                    ?>
-                </p>
-            </div>
-            
-            <!-- Detailed Results -->
-            <h3 style="margin-top: 30px;">📊 تفاصيل الإجابات:</h3>
-            
-            <?php foreach ($results as $index => $result): ?>
-                <div class="question-result <?php echo $result['is_correct'] ? 'correct' : 'incorrect'; ?>">
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span class="answer-indicator <?php echo $result['is_correct'] ? 'correct-indicator' : 'incorrect-indicator'; ?>">
-                            <?php echo $result['is_correct'] ? '✅ صحيح' : '❌ خطأ'; ?>
-                        </span>
-                        <strong>السؤال <?php echo $index + 1; ?>:</strong>
-                    </div>
+            <script>
+                // Simple progress tracking
+                document.addEventListener('DOMContentLoaded', function() {
+                    const radioButtons = document.querySelectorAll('input[type="radio"]');
+                    const progressFill = document.querySelector('.progress-fill');
+                    const totalQuestions = <?php echo $totalQuestions; ?>;
+                    let answeredQuestions = 0;
                     
-                    <p style="margin: 10px 0;"><?php echo $result['question']; ?></p>
-                    
-                    <div style="margin: 10px 0;">
-                        <?php if ($result['user_answer']): ?>
-                            <p><strong>إجابتك:</strong> <?php echo $result['user_answer']; ?>) <?php echo $result['options'][$result['user_answer']]; ?></p>
-                        <?php else: ?>
-                            <p><strong>إجابتك:</strong> لم تجب على هذا السؤال</p>
-                        <?php endif; ?>
-                        
-                        <p><strong>الإجابة الصحيحة:</strong> <?php echo $result['correct_answer']; ?>) <?php echo $result['options'][$result['correct_answer']]; ?></p>
-                    </div>
-                    
-                    <div class="explanation">
-                        <strong>التفسير:</strong> <?php echo $result['explanation']; ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-            
-            <!-- Action Buttons -->
-            <form method="POST" style="margin-top: 30px;">
-                <button type="submit" name="reset" class="reset-btn">🔄 إعادة المحاولة</button>
-            </form>
-            
-        <?php endif; ?>
-        
-        <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
-            <p>💡 <strong>نصيحة:</strong> لتعلم المزيد عن PHP، قم بزيارة الوثائق الرسمية على php.net</p>
-        </div>
-    </div>
-
-    <script>
-        // Add some interactive features
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scroll to results
-            <?php if ($submitted): ?>
-                setTimeout(() => {
-                    document.querySelector('.score-display').scrollIntoView({behavior: 'smooth'});
-                }, 100);
-            <?php endif; ?>
-            
-            // Add progress indicator during quiz
-            <?php if (!$submitted): ?>
-                const form = document.getElementById('quizForm');
-                const questions = document.querySelectorAll('.question');
-                
-                questions.forEach((question, index) => {
-                    const inputs = question.querySelectorAll('input[type="radio"]');
-                    inputs.forEach(input => {
-                        input.addEventListener('change', updateProgress);
+                    radioButtons.forEach(radio => {
+                        radio.addEventListener('change', function() {
+                            // Get all questions
+                            const questions = {};
+                            radioButtons.forEach(btn => {
+                                const questionId = btn.name;
+                                questions[questionId] = true;
+                            });
+                            
+                            // Count answered questions
+                            answeredQuestions = 0;
+                            Object.keys(questions).forEach(questionId => {
+                                if (document.querySelector(`input[name="${questionId}"]:checked`)) {
+                                    answeredQuestions++;
+                                }
+                            });
+                            
+                            // Update progress bar
+                            const progress = Math.round((answeredQuestions / totalQuestions) * 100);
+                            progressFill.style.width = `${progress}%`;
+                            progressFill.textContent = `${progress}%`;
+                        });
                     });
                 });
-                
-                function updateProgress() {
-                    const totalQuestions = <?php echo $totalQuestions; ?>;
-                    const answeredQuestions = form.querySelectorAll('input[type="radio"]:checked').length;
-                    const percentage = (answeredQuestions / totalQuestions) * 100;
-                    
-                    // Create or update progress bar
-                    let progressBar = document.querySelector('.quiz-progress');
-                    if (!progressBar) {
-                        progressBar = document.createElement('div');
-                        progressBar.className = 'progress-bar quiz-progress';
-                        progressBar.innerHTML = '<div class="progress-fill"></div>';
-                        form.insertBefore(progressBar, form.firstChild);
-                    }
-                    
-                    const fill = progressBar.querySelector('.progress-fill');
-                    fill.style.width = percentage + '%';
-                    fill.textContent = `${answeredQuestions} من ${totalQuestions} أسئلة`;
-                }
-            <?php endif; ?>
-        });
-    </script>
+            </script>
+        <?php endif; ?>
+    </div>
 </body>
 </html>
