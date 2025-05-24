@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Contact - PHP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <span class="icon">📝</span>
+                Formulaire de Contact
+            </h1>
+            <p>Remplissez ce formulaire pour nous contacter</p>
+        </div>
+
+        <!-- HTML FORM -->
+        <div class="form-container">
+            <form method="POST" action="reponse.php">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prenom">
+                            <span class="icon">👤</span> Prénom *
+                        </label>
+                        <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nom">
+                            <span class="icon">👤</span> Nom *
+                        </label>
+                        <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="icon">📧</span> Email *
+                        </label>
+                        <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telephone">
+                            <span class="icon">📱</span> Téléphone
+                        </label>
+                        <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">
+                            <span class="icon">🎂</span> Âge
+                        </label>
+                        <input type="number" id="age" name="age" min="13" max="120" placeholder="Votre âge">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pays">
+                            <span class="icon">🌍</span> Pays
+                        </label>
+                        <select id="pays" name="pays">
+                            <option value="">Sélectionnez votre pays</option>
+                            <option value="France">France</option>
+                            <option value="Belgique">Belgique</option>
+                            <option value="Suisse">Suisse</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Maroc">Maroc</option>
+                            <option value="Algérie">Algérie</option>
+                            <option value="Tunisie">Tunisie</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <span class="icon">⚧</span> Genre
+                    </label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="homme" name="genre" value="Homme">
+                            <label for="homme">Homme</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="femme" name="genre" value="Femme">
+                            <label for="femme">Femme</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="autre" name="genre" value="Autre">
+                            <label for="autre">Autre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">
+                        <span class="icon">💬</span> Message
+                    </label>
+                    <textarea id="message" name="message" placeholder="Écrivez votre message ici..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">
+                            <span class="icon">📬</span> Je souhaite recevoir la newsletter
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="conditions" name="conditions" required>
+                        <label for="conditions">
+                            <span class="icon">📋</span> J'accepte les conditions d'utilisation *
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" name="submit" class="submit-btn">
+                    <span class="icon">🚀</span> Envoyer le formulaire
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to form elements
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach((group, index) => {
+                group.style.opacity = '0';
+                group.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    group.style.transition = 'all 0.6s ease';
+                    group.style.opacity = '1';
+                    group.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            // Form validation feedback
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.style.borderColor = '#dc3545';
+                        this.style.backgroundColor = '#fff5f5';
+                    } else {
+                        this.style.borderColor = '#28a745';
+                        this.style.backgroundColor = '#f8fff8';
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.style.borderColor === 'rgb(220, 53, 69)') {
+                        this.style.borderColor = '#e1e8ed';
+                        this.style.backgroundColor = '#f8f9fa';
+                    }
+                });
+            });
+
+            // Email validation
+            const emailInput = document.getElementById('email');
+            if (emailInput) {
+                emailInput.addEventListener('blur', function() {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (this.value && !emailRegex.test(this.value)) {
+                        this.style.borderColor = '#dc3545';
+                        this.style.backgroundColor = '#fff5f5';
+                    }
+                });
+            }
+
+            // Phone number formatting
+            const phoneInput = document.getElementById('telephone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function() {
+                    let value = this.value.replace(/\D/g, '');
+                    if (value.length >= 10) {
+                        value = value.replace(/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5');
+                    }
+                    this.value = value;
+                });
+            }
+        });
+
+        // Prevent form resubmission on page refresh
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP JavaScript - Exercices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .exercise {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+        
+        .exercise:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .exercise h2 {
+            color: #667eea;
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .console-output {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TP JavaScript - Exercices</h1>
+        
+        <!-- Exercice 1 -->
+        <div class="exercise">
+            <h2>Exercice 1 : Opérations arithmétiques</h2>
+            <div class="description">
+                Ce script demande deux nombres à l'utilisateur et calcule leur somme, différence, produit et quotient.
+            </div>
+            <button onclick="exercice1()">Lancer l'Exercice 1</button>
+            <div class="console-output" id="console1"></div>
+        </div>
+        
+        <!-- Exercice 2 -->
+        <div class="exercise">
+            <h2>Exercice 2 : Jeu de devinette</h2>
+            <div class="description">
+                Un jeu où vous devez deviner un nombre entre 1 et 10. L'ordinateur vous indique si le nombre à deviner est plus grand ou plus petit.
+            </div>
+            <button onclick="exercice2()">Lancer l'Exercice 2</button>
+            <div class="console-output" id="console2"></div>
+        </div>
+        
+        <!-- Exercice 3 -->
+        <div class="exercise">
+            <h2>Exercice 3 : Quiz interactif</h2>
+            <div class="description">
+                Un quiz avec plusieurs questions. Vos réponses sont évaluées et un score final est affiché.
+            </div>
+            <button onclick="lancerQuiz()">Démarrer le Quiz</button>
+            <div class="console-output" id="console3"></div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

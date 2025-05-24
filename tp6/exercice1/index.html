@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 1 - Manipulation du DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        #mainDiv {
+            border: 2px solid #007bff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #mainDiv:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercice 1 - Manipulation du DOM</h1>
+        <p>Cliquez sur la div bleue ci-dessous pour voir l'événement en action !</p>
+        
+        <!-- Le contenu sera ajouté dynamiquement par JavaScript -->
+    </div>
+
+    <script>
+        // 1. Créer une div et un paragraphe
+        const mainDiv = document.createElement('div');
+        mainDiv.id = 'mainDiv';
+        
+        const paragraph = document.createElement('p');
+        paragraph.id = 'mainParagraph';
+        paragraph.textContent = 'Ceci est un paragraphe';
+        
+        // Ajouter le paragraphe à la div
+        mainDiv.appendChild(paragraph);
+        
+        // Ajouter la div au container
+        const container = document.querySelector('.container');
+        container.appendChild(mainDiv);
+        
+        // 2. Modifier le texte
+        setTimeout(() => {
+            paragraph.textContent = 'Le texte a été modifié';
+        }, 1000);
+        
+        // 3. Modification du style CSS
+        setTimeout(() => {
+            paragraph.style.backgroundColor = 'lightblue';
+            paragraph.style.textAlign = 'center';
+            paragraph.style.padding = '10px';
+            paragraph.style.borderRadius = '5px';
+        }, 2000);
+        
+        // 4. Ajout d'un événement click
+        mainDiv.addEventListener('click', function() {
+            paragraph.textContent = 'Un clic a été détecté';
+            paragraph.style.backgroundColor = 'lightgreen';
+            paragraph.style.fontWeight = 'bold';
+            
+            // Animation de feedback
+            mainDiv.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                mainDiv.style.transform = 'scale(1)';
+            }, 200);
+        });
+        
+        // Affichage des informations dans la console
+        console.log('Document title:', document.title);
+        console.log('Document URL:', document.URL);
+        console.log('Div créée:', mainDiv);
+        console.log('Paragraphe créé:', paragraph);
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Contact Avancé</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📧 Formulaire de Contact</h1>
+        <form method="POST" action="traitement_contact.php">
+            <p>
+                <label for="civilite">Civilité :</label>
+                <select name="civilite" id="civilite" required>
+                    <option value="">-- Choisir --</option>
+                    <option value="M.">Monsieur</option>
+                    <option value="Mme">Madame</option>
+                </select>
+            </p>
+            
+            <p>
+                <label for="nom">Nom :</label>
+                <input type="text" name="nom" id="nom" required>
+            </p>
+            
+            <p>
+                <label for="prenom">Prénom :</label>
+                <input type="text" name="prenom" id="prenom" required>
+            </p>
+            
+            <p>
+                <label for="email">Email :</label>
+                <input type="email" name="email" id="email" required>
+            </p>
+            
+            <p>
+                <label for="telephone">Téléphone :</label>
+                <input type="tel" name="telephone" id="telephone">
+            </p>
+            
+            <p>
+                <label for="sujet">Sujet :</label>
+                <select name="sujet" id="sujet" required>
+                    <option value="">-- Choisir un sujet --</option>
+                    <option value="Information">Demande d'information</option>
+                    <option value="Support">Support technique</option>
+                    <option value="Partenariat">Proposition de partenariat</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </p>
+            
+            <p>
+                <label for="message">Message :</label><br>
+                <textarea name="message" id="message" rows="5" cols="50" required></textarea>
+            </p>
+            
+            <p>
+                <label>
+                    <input type="checkbox" name="newsletter" value="oui">
+                    Je souhaite recevoir la newsletter
+                </label>
+            </p>
+            
+            <p>
+                <input type="submit" value="📩 Envoyer le message">
+                <input type="reset" value="🔄 Effacer">
+            </p>
+        </form>
+    </div>
+</body>
+</html>
