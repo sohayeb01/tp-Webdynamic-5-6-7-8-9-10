@@ -1,0 +1,9 @@
+{
+    "name": "tp",
+    "description": "TP PHP ",
+    "require": {
+        "php": "^8.0"
+        
+    }
+  }
+  
