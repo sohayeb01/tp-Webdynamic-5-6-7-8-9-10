@@ -1,4 +1,7 @@
 <?php
+// Start output buffering to prevent header issues
+ob_start();
+
 session_start();
 require_once __DIR__ . '/../config/auth.php';
 
@@ -54,4 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 // Redirect to login if accessed directly
 header('Location: login.php');
-exit(); 
+exit();
+
+// End output buffering
+ob_end_flush(); 

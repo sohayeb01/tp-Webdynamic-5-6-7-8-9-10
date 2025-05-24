@@ -11,5 +11,4 @@ define('ADMINPASS', 'admin123');
 $VALID_USERS = [
     ['login' => USERLOGIN, 'password' => USERPASS, 'role' => 'user'],
     ['login' => ADMINLOGIN, 'password' => ADMINPASS, 'role' => 'admin']
-];
-?> 
+]; 

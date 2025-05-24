@@ -44,5 +44,4 @@ try {
     
 } catch(PDOException $e) {
     die("Database initialization failed: " . $e->getMessage());
-}
-?> 
+} 
