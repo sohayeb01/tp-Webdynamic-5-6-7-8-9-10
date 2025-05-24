@@ -1,8 +1,16 @@
 [build]
-builder = "nixpacks"
+builder = "NIXPACKS"
 
 [deploy]
-startCommand = "php -S 0.0.0.0:$PORT"
+startCommand = "php -S 0.0.0.0:${PORT:-8080}"
 healthcheckPath = "/"
-healthcheckTimeout = 100
-restartPolicyType = "never"
+restartPolicyType = "ON_FAILURE"
+
+[phases.setup]
+nixPkgs = ["php81"]
+
+[phases.build]
+cmds = [
+    "mkdir -p /app",
+    "cp -r . /app"
+] 
