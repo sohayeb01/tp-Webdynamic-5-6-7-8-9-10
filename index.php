@@ -22,7 +22,7 @@
         </ul>
         
         <div class="footer">
-            &copy; 2024 - Tous droits réservés
+            &copy; 2025 - Tous droits réservés
         </div>
     </div>
 </body>
